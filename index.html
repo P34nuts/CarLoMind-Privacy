@@ -11,6 +11,8 @@
     body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
     header { background:linear-gradient(135deg,#083d4a,#087f8c); color:#fff; padding:56px 20px 48px; }
     header > div, main, footer { max-width:900px; margin:auto; }
+    .brand { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+    .brand-logo { width:68px; height:68px; object-fit:contain; border-radius:18px; background:rgba(255,255,255,.96); padding:6px; box-shadow:0 8px 24px rgba(0,0,0,.16); }
     .eyebrow { letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; opacity:.82; }
     h1 { margin:.35em 0 .15em; font-size:clamp(2rem,5vw,3.3rem); line-height:1.1; }
     .lead { margin:0; max-width:700px; font-size:1.12rem; opacity:.92; }
@@ -30,7 +32,7 @@
 </head>
 <body>
 <header><div>
-  <div class="eyebrow">CarLoMind · Android-App</div>
+  <div class="brand"><img class="brand-logo" src="carlomind-logo.webp" alt="CarLoMind Logo"><div class="eyebrow">CarLoMind · Android-App</div></div>
   <h1>Datenschutzerklärung</h1>
   <p class="lead">Transparenz darüber, welche Daten CarLoMind verarbeitet, wofür sie benötigt werden und welche externen Dienste beteiligt sein können.</p>
 </div></header>
