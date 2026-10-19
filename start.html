@@ -3,75 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CarLoMind – Dein Parkplatz. Automatisch im Blick.</title>
-  <meta name="description" content="CarLoMind findet deinen Parkplatz wieder – automatisch, manuell und mit intelligenter Standort- und Fahrzeugerkennung.">
-  <meta name="theme-color" content="#073f4c">
+  <title>CarLoMind – AutoPark. Einsteigen. Abstellen. Wiederfinden.</title>
+  <meta name="description" content="CarLoMind macht aus der Bluetooth-Trennung deines Fahrzeugs einen smarten Parkmoment: AutoPark, Verlauf, Karte, Timer, OCR und Navigation in einer klaren Android-App.">
+  <meta name="theme-color" content="#071b2e">
+  <meta property="og:title" content="CarLoMind – AutoPark, der deinen Parkplatz im Blick behält">
+  <meta property="og:description" content="Bluetooth-Trennung erkannt, Standort geprüft, Parkplatz gespeichert – mit Verlauf, Karte, Timer und Navigation.">
+  <meta property="og:image" content="carlomind-logo.webp">
   <link rel="icon" href="carlomind-logo.webp" type="image/webp">
   <style>
-    :root { color-scheme: light; --ink:#12252d; --muted:#55707a; --deep:#073f4c; --deep-2:#0b5967; --accent:#19b7a7; --accent-2:#93f0d6; --paper:#fff; --soft:#eff9f7; --line:#d9ebe8; --shadow:0 18px 55px rgba(7,63,76,.12); }
+    :root { color-scheme: dark; --ink:#eaf7ff; --muted:#a9c3d1; --navy:#061522; --navy-2:#0a2235; --teal:#35e0c1; --cyan:#8cecff; --lime:#d7ff9b; --line:rgba(174,226,241,.16); --card:rgba(13,43,62,.72); --shadow:0 28px 80px rgba(0,0,0,.28); }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; background:#f5fbfa; color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    body { margin:0; color:var(--ink); background:var(--navy); font:16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
     a { color:inherit; }
-    .wrap { width:min(1120px,calc(100% - 40px)); margin:auto; }
-    .topbar { position:relative; z-index:2; padding:18px 0; color:#fff; }
+    .wrap { width:min(1160px,calc(100% - 40px)); margin:auto; }
+    .hero { position:relative; overflow:hidden; background:radial-gradient(circle at 74% 16%,rgba(53,224,193,.26),transparent 27%),radial-gradient(circle at 16% 18%,rgba(140,236,255,.13),transparent 24%),linear-gradient(135deg,#061522 0%,#082c42 57%,#073e4c 100%); }
+    .hero::after { position:absolute; width:580px; height:580px; right:-260px; bottom:-300px; border:1px solid rgba(140,236,255,.18); border-radius:50%; box-shadow:0 0 0 28px rgba(140,236,255,.035),0 0 0 56px rgba(140,236,255,.025),0 0 0 84px rgba(140,236,255,.018); content:""; }
+    .topbar { position:relative; z-index:2; padding:20px 0; }
     .nav { display:flex; align-items:center; justify-content:space-between; gap:22px; }
-    .brand { display:flex; align-items:center; gap:11px; font-weight:750; letter-spacing:.01em; text-decoration:none; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:.01em; text-decoration:none; }
     .brand img { width:42px; height:42px; padding:4px; border-radius:13px; background:#fff; object-fit:contain; }
-    .nav-links { display:flex; align-items:center; gap:20px; font-size:.92rem; }
-    .nav-links a { color:#d9fffa; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:22px; color:#cbeaf1; font-size:.92rem; }
+    .nav-links a { text-decoration:none; }
     .nav-links a:hover { color:#fff; }
-    .nav-button { padding:9px 15px; border:1px solid rgba(255,255,255,.35); border-radius:999px; }
-    .hero { overflow:hidden; color:#fff; background:radial-gradient(circle at 78% 8%,rgba(25,183,167,.34),transparent 30%), linear-gradient(135deg,#062f3b,#0a6170 68%,#087f8c); }
-    .hero-grid { display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:70px; padding:62px 0 82px; }
-    .eyebrow { display:inline-block; margin-bottom:15px; color:var(--accent-2); font-size:.78rem; font-weight:750; letter-spacing:.15em; text-transform:uppercase; }
+    .nav-button { padding:9px 15px; border:1px solid rgba(255,255,255,.25); border-radius:999px; }
+    .hero-grid { position:relative; z-index:1; display:grid; grid-template-columns:1.02fr .98fr; align-items:center; gap:72px; padding:74px 0 95px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; margin-bottom:17px; color:var(--teal); font-size:.76rem; font-weight:850; letter-spacing:.16em; text-transform:uppercase; }
+    .eyebrow::before { width:26px; height:2px; border-radius:2px; background:currentColor; content:""; }
     h1,h2,h3,p { margin-top:0; }
-    h1 { max-width:700px; margin-bottom:22px; font-size:clamp(2.65rem,6vw,5.4rem); line-height:1.02; letter-spacing:-.055em; }
-    .hero-copy { max-width:650px; color:#dcfffa; font-size:1.18rem; }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-    .button { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 19px; border-radius:999px; font-weight:750; text-decoration:none; }
-    .button-primary { color:#063a44; background:var(--accent-2); box-shadow:0 10px 26px rgba(0,0,0,.14); }
-    .button-secondary { color:#fff; border:1px solid rgba(255,255,255,.38); }
-    .hero-media { position:relative; justify-self:end; width:min(100%,360px); }
-    .hero-media::before { position:absolute; inset:-28px -38px 30px 28px; border:1px solid rgba(147,240,214,.25); border-radius:45px; content:""; transform:rotate(7deg); }
-    .intro-video { position:relative; display:block; width:100%; border:5px solid rgba(255,255,255,.74); border-radius:30px; background:#052b36; box-shadow:0 28px 65px rgba(0,0,0,.27); }
-    .section { padding:92px 0; }
-    .section-heading { max-width:720px; margin-bottom:40px; }
-    .section-heading .eyebrow { color:var(--deep-2); }
-    h2 { margin-bottom:16px; color:var(--deep); font-size:clamp(2rem,4vw,3.2rem); line-height:1.08; letter-spacing:-.04em; }
-    .section-heading p { color:var(--muted); font-size:1.1rem; }
-    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px; }
-    .stat { padding:22px; border:1px solid rgba(147,240,214,.24); border-radius:18px; background:rgba(255,255,255,.09); }
-    .stat strong { display:block; margin-bottom:2px; color:#fff; font-size:1.7rem; }
-    .stat span { color:#c9f5ee; font-size:.9rem; }
+    h1 { max-width:720px; margin-bottom:24px; font-size:clamp(3.15rem,7vw,6.35rem); line-height:.96; letter-spacing:-.065em; }
+    h1 .accent { color:var(--teal); }
+    .hero-copy { max-width:630px; color:#d0e8ef; font-size:1.2rem; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:31px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 20px; border-radius:999px; font-weight:800; text-decoration:none; transition:transform .2s ease,background .2s ease; }
+    .button:hover { transform:translateY(-2px); }
+    .button-primary { color:#062333; background:var(--teal); box-shadow:0 12px 28px rgba(53,224,193,.2); }
+    .button-secondary { color:#e6fbff; border:1px solid rgba(255,255,255,.27); }
+    .hero-note { margin-top:18px; color:#8fb7c5; font-size:.88rem; }
+    .hero-media { position:relative; justify-self:end; width:min(100%,390px); }
+    .hero-media::before { position:absolute; inset:-26px -36px 28px 30px; border:1px solid rgba(140,236,255,.24); border-radius:48px; content:""; transform:rotate(7deg); }
+    .intro-video { position:relative; display:block; width:100%; border:5px solid rgba(255,255,255,.8); border-radius:31px; background:#04121f; box-shadow:0 30px 75px rgba(0,0,0,.38); }
+    .phone-badge { position:absolute; right:-36px; bottom:28px; width:190px; padding:16px 18px; border:1px solid rgba(255,255,255,.2); border-radius:18px; background:rgba(8,35,53,.9); box-shadow:var(--shadow); backdrop-filter:blur(15px); }
+    .phone-badge strong { display:block; color:var(--lime); font-size:1.02rem; }
+    .phone-badge span { color:#b7d5df; font-size:.8rem; }
+    .proof-strip { border-top:1px solid rgba(255,255,255,.11); border-bottom:1px solid rgba(255,255,255,.11); background:rgba(0,0,0,.12); }
+    .proof-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+    .proof { padding:23px 18px; border-right:1px solid rgba(255,255,255,.1); }
+    .proof:last-child { border-right:0; }
+    .proof strong { display:block; margin-bottom:3px; color:#fff; font-size:1.05rem; }
+    .proof span { color:#9cc4cf; font-size:.88rem; }
+    .section { padding:105px 0; background:#f4fbfc; color:#102633; }
+    .section.dark { color:var(--ink); background:linear-gradient(135deg,#071a2b,#0b3045); }
+    .section-heading { max-width:760px; margin-bottom:46px; }
+    .section-heading .eyebrow { color:#087f8c; }
+    .dark .section-heading .eyebrow { color:var(--teal); }
+    h2 { margin-bottom:17px; color:#082d42; font-size:clamp(2.3rem,5vw,4.25rem); line-height:1.02; letter-spacing:-.055em; }
+    .dark h2 { color:#fff; }
+    .section-heading p { max-width:700px; color:#57727d; font-size:1.12rem; }
+    .dark .section-heading p { color:#c3dbe4; }
+    .autopark-story { display:grid; grid-template-columns:.8fr 1.2fr; gap:60px; align-items:stretch; }
+    .autopark-panel { position:relative; overflow:hidden; min-height:420px; padding:31px; border:1px solid rgba(53,224,193,.28); border-radius:28px; background:linear-gradient(150deg,#0a3045,#092333); box-shadow:var(--shadow); }
+    .autopark-panel::after { position:absolute; width:330px; height:330px; right:-150px; bottom:-140px; border:1px solid rgba(53,224,193,.22); border-radius:50%; box-shadow:0 0 0 22px rgba(53,224,193,.04),0 0 0 44px rgba(53,224,193,.025); content:""; }
+    .signal { display:flex; align-items:center; gap:10px; color:var(--teal); font-size:.82rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .signal-dot { width:10px; height:10px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 7px rgba(53,224,193,.14),0 0 22px rgba(53,224,193,.8); }
+    .autopark-panel h3 { max-width:330px; margin:36px 0 16px; color:#fff; font-size:2rem; line-height:1.05; letter-spacing:-.04em; }
+    .autopark-panel p { max-width:340px; color:#b9d7df; }
+    .mini-status { position:absolute; right:27px; bottom:28px; left:27px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 17px; border:1px solid rgba(255,255,255,.14); border-radius:16px; background:rgba(255,255,255,.08); }
+    .mini-status span { color:#a6c8d2; font-size:.82rem; }
+    .mini-status strong { color:var(--lime); font-size:.9rem; }
+    .flow { display:grid; gap:16px; }
+    .flow-card { display:grid; grid-template-columns:55px 1fr; gap:18px; align-items:start; padding:22px 24px; border:1px solid #dbecee; border-radius:21px; background:#fff; box-shadow:0 14px 38px rgba(11,66,82,.07); }
+    .flow-number { display:grid; width:44px; height:44px; place-items:center; border-radius:14px; color:#073044; background:#cffff0; font-weight:900; }
+    .flow-card h3 { margin-bottom:5px; color:#0a3b51; font-size:1.12rem; }
+    .flow-card p { margin:0; color:#5d7781; }
     .feature-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .card { padding:27px; border:1px solid var(--line); border-radius:20px; background:var(--paper); box-shadow:var(--shadow); }
-    .card-icon { display:grid; width:45px; height:45px; margin-bottom:19px; place-items:center; border-radius:14px; color:var(--deep); background:var(--accent-2); font-size:1.35rem; font-weight:800; }
-    .card h3 { margin-bottom:9px; color:var(--deep); font-size:1.16rem; }
-    .card p { margin-bottom:0; color:var(--muted); }
-    .band { color:#fff; background:linear-gradient(120deg,#073f4c,#0a6470); }
-    .band .section-heading .eyebrow { color:var(--accent-2); }
-    .band h2 { color:#fff; }
-    .band .section-heading p { color:#d7f5f0; }
-    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; counter-reset:step; }
-    .step { position:relative; padding:28px 26px 28px 76px; border:1px solid rgba(255,255,255,.2); border-radius:20px; background:rgba(255,255,255,.08); }
-    .step::before { position:absolute; top:27px; left:24px; display:grid; width:35px; height:35px; place-items:center; border-radius:50%; color:var(--deep); background:var(--accent-2); content:counter(step); counter-increment:step; font-weight:850; }
-    .step h3 { margin-bottom:8px; color:#fff; }
-    .step p { margin-bottom:0; color:#ccefeb; }
-    .split { display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; align-items:center; }
-    .quote { margin:0; padding:30px; border-left:4px solid var(--accent); border-radius:0 18px 18px 0; background:#e8f8f5; color:var(--deep); font-size:1.25rem; font-weight:650; }
-    .checklist { display:grid; gap:14px; margin:0; padding:0; list-style:none; }
-    .checklist li { position:relative; padding-left:32px; color:var(--muted); }
-    .checklist li::before { position:absolute; left:0; top:4px; display:grid; width:20px; height:20px; place-items:center; border-radius:50%; color:#fff; background:var(--deep-2); content:"✓"; font-size:.76rem; font-weight:800; }
-    .cta { padding:74px 0; text-align:center; background:#dff8f2; }
-    .cta h2 { margin-bottom:13px; }
-    .cta p { max-width:650px; margin:0 auto; color:var(--muted); font-size:1.08rem; }
-    .cta .button-primary { margin-top:26px; color:#fff; background:var(--deep); }
-    footer { padding:30px 0 42px; color:var(--muted); font-size:.9rem; }
+    .card { padding:28px; border:1px solid #d9eaed; border-radius:22px; background:#fff; box-shadow:0 18px 55px rgba(7,63,76,.08); }
+    .card-icon { display:grid; width:46px; height:46px; margin-bottom:19px; place-items:center; border-radius:15px; color:#07374b; background:#cffff0; font-size:1.28rem; font-weight:900; }
+    .card h3 { margin-bottom:9px; color:#0a3b51; font-size:1.15rem; }
+    .card p { margin:0; color:#5d7781; }
+    .wide-card { grid-column:span 2; display:grid; grid-template-columns:.7fr 1.3fr; gap:25px; align-items:center; background:linear-gradient(135deg,#e6fbf7,#fff); }
+    .wide-card h3 { font-size:1.45rem; }
+    .feature-tags { display:flex; flex-wrap:wrap; gap:8px; }
+    .tag { padding:7px 11px; border:1px solid #cbe9e4; border-radius:999px; color:#0b6671; background:#fff; font-size:.82rem; font-weight:750; }
+    .control-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .control-card { padding:28px; border:1px solid rgba(174,226,241,.16); border-radius:22px; background:rgba(255,255,255,.06); }
+    .control-card h3 { color:#fff; }
+    .control-card p { color:#b9d6df; }
+    .control-list { display:grid; gap:10px; margin:18px 0 0; padding:0; list-style:none; }
+    .control-list li { position:relative; padding-left:25px; color:#d1e8ed; }
+    .control-list li::before { position:absolute; top:5px; left:0; display:grid; width:17px; height:17px; place-items:center; border-radius:50%; color:#06303e; background:var(--teal); content:"✓"; font-size:.68rem; font-weight:900; }
+    .privacy { display:grid; grid-template-columns:.8fr 1.2fr; gap:60px; align-items:start; }
+    .quote { margin:0; padding:28px; border-left:4px solid var(--teal); border-radius:0 18px 18px 0; color:#0a3b51; background:#dcfaf2; font-size:1.24rem; font-weight:750; }
+    .checklist { display:grid; gap:15px; margin:0; padding:0; list-style:none; }
+    .checklist li { position:relative; padding-left:31px; color:#526d78; }
+    .checklist li::before { position:absolute; top:5px; left:0; display:grid; width:20px; height:20px; place-items:center; border-radius:50%; color:#fff; background:#087f8c; content:"✓"; font-size:.75rem; font-weight:850; }
+    .fineprint { margin-top:24px; color:#718a93; font-size:.82rem; }
+    .cta { padding:90px 0; text-align:center; background:linear-gradient(125deg,#c9fff1,#8cecff); color:#062b3c; }
+    .cta .eyebrow { color:#087f8c; }
+    .cta h2 { color:#062b3c; }
+    .cta p { max-width:690px; margin:0 auto; color:#365d69; font-size:1.12rem; }
+    .cta .button-primary { margin-top:28px; color:#eaffff; background:#073f4c; }
+    footer { padding:30px 0 42px; color:#86a6b2; background:#061522; font-size:.9rem; }
     .footer-inner { display:flex; justify-content:space-between; gap:20px; }
-    footer a { color:var(--deep-2); text-decoration:none; }
-    @media (max-width:800px) { .hero-grid,.split { grid-template-columns:1fr; gap:38px; } .hero-grid { padding-top:38px; } .hero-media { justify-self:center; width:min(100%,330px); } .feature-grid { grid-template-columns:repeat(2,1fr); } .steps { grid-template-columns:1fr; } }
-    @media (max-width:560px) { .wrap { width:min(100% - 28px,1120px); } .nav-links a:not(.nav-button) { display:none; } .nav-button { padding:8px 12px; } .hero-grid { padding-bottom:56px; } .section { padding:66px 0; } .feature-grid,.stats { grid-template-columns:1fr; } h1 { font-size:clamp(2.5rem,14vw,4rem); } .footer-inner { flex-direction:column; } }
+    footer a { color:#b9e9e5; text-decoration:none; }
+    @media (max-width:900px) { .hero-grid,.autopark-story,.privacy { grid-template-columns:1fr; gap:44px; } .hero-grid { padding-top:48px; } .hero-media { justify-self:center; width:min(100%,360px); } .phone-badge { right:-16px; } .feature-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:640px) { .wrap { width:min(100% - 28px,1160px); } .nav-links a:not(.nav-button) { display:none; } .nav-button { padding:8px 12px; } .hero-grid { padding-bottom:64px; } .section { padding:74px 0; } .proof-grid { grid-template-columns:repeat(2,1fr); } .proof:nth-child(2) { border-right:0; } .proof:nth-child(-n+2) { border-bottom:1px solid rgba(255,255,255,.1); } .feature-grid,.control-grid { grid-template-columns:1fr; } .wide-card { grid-column:auto; display:block; } h1 { font-size:clamp(3rem,15vw,5rem); } .footer-inner { flex-direction:column; } }
   </style>
 </head>
 <body>
@@ -79,43 +115,54 @@
     <div class="wrap topbar">
       <nav class="nav" aria-label="Hauptnavigation">
         <a class="brand" href="start.html"><img src="carlomind-logo.webp" alt="CarLoMind Logo"><span>CarLoMind</span></a>
-        <div class="nav-links"><a href="#funktionen">Funktionen</a><a href="#so-gehts">So geht’s</a><a class="nav-button" href="index.html">Datenschutz</a></div>
+        <div class="nav-links"><a href="#autopark">AutoPark</a><a href="#funktionen">Funktionen</a><a href="#kontrolle">Kontrolle</a><a class="nav-button" href="index.html">Datenschutz</a></div>
       </nav>
     </div>
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">CarLoMind · Android-App</span>
-        <h1>Dein Parkplatz.<br>Automatisch im Blick.</h1>
-        <p class="hero-copy">CarLoMind merkt sich, wo dein Fahrzeug steht – automatisch nach der Bluetooth-Trennung oder ganz einfach per Fingertipp. Damit du schneller weiterkommst und nie wieder unnötig suchst.</p>
-        <div class="actions"><a class="button button-primary" href="#funktionen">App entdecken</a><a class="button button-secondary" href="index.html">Datenschutzerklärung</a></div>
-        <div class="stats"><div class="stat"><strong>AutoPark</strong><span>Standort nach dem Aussteigen speichern</span></div><div class="stat"><strong>Lokal</strong><span>Deine Parkdaten bleiben auf deinem Gerät</span></div><div class="stat"><strong>Frei</strong><span>Ohne Konto und ohne Tracking-System</span></div></div>
+        <span class="eyebrow">Der Parkplatzassistent für Android</span>
+        <h1>Einsteigen.<br><span class="accent">Abstellen.</span><br>Wiederfinden.</h1>
+        <p class="hero-copy">CarLoMind macht aus dem Bluetooth-Moment nach der Fahrt einen klaren Parkmoment: AutoPark kann die Trennung deines zugeordneten Fahrzeugs als Anlass nehmen, den Standort zu prüfen und deinen Parkplatz für später zu sichern.</p>
+        <div class="actions"><a class="button button-primary" href="#autopark">AutoPark entdecken</a><a class="button button-secondary" href="#funktionen">Alle Funktionen</a></div>
+        <p class="hero-note">Mit manueller Speicherung, Verlauf, Karte, Timer, Navigation und persönlicher Kontrolle.</p>
       </div>
-      <div class="hero-media"><video class="intro-video" autoplay muted playsinline preload="auto" aria-label="CarLoMind Introvideo"><source src="carlomind-intro.mp4" type="video/mp4"></video></div>
+      <div class="hero-media"><video class="intro-video" autoplay muted playsinline preload="auto" aria-label="CarLoMind Introvideo"><source src="carlomind-intro.mp4" type="video/mp4"></video><div class="phone-badge"><strong>AutoPark bereit</strong><span>Fahrzeug verbunden · Status sichtbar</span></div></div>
     </div>
+    <div class="proof-strip"><div class="wrap proof-grid"><div class="proof"><strong>Bluetooth-basiert</strong><span>Zuordnung statt ständiger Suche</span></div><div class="proof"><strong>Geprüfter Parkmoment</strong><span>Standort und Bewegung im Ablauf</span></div><div class="proof"><strong>Direkt zurück</strong><span>Karte, Entfernung und Navigation</span></div><div class="proof"><strong>Lokal orientiert</strong><span>Kontrolle über deine Parkdaten</span></div></div></div>
   </header>
 
   <main>
+    <section class="section" id="autopark"><div class="wrap">
+      <div class="section-heading"><span class="eyebrow">Das Herzstück</span><h2>AutoPark denkt an den Moment, in dem du aussteigst.</h2><p>Du ordnest einmal ein gekoppeltes Fahrzeug zu. Wenn dessen Bluetooth-Verbindung getrennt wird, kann CarLoMind – sofern AutoPark, Berechtigungen und Standort passen – einen geprüften Speichervorgang anstoßen.</p></div>
+      <div class="autopark-story">
+        <div class="autopark-panel"><div class="signal"><span class="signal-dot"></span> AutoPark aktiv</div><h3>Vom Bluetooth-Signal zum gespeicherten Parkplatz.</h3><p>Keine Suche in der App. Kein hektisches „Wo stand ich noch gleich?“. Der Ablauf ist auf den entscheidenden Moment ausgerichtet und bleibt in der App diagnostisch nachvollziehbar.</p><div class="mini-status"><span>Letzter AutoPark-Status</span><strong>Standort geprüft</strong></div></div>
+        <div class="flow"><article class="flow-card"><div class="flow-number">01</div><div><h3>Fahrzeug zuordnen</h3><p>Wähle ein bereits gekoppeltes Fahrzeug aus der Systemliste und entscheide, ob AutoPark aktiv sein soll.</p></div></article><article class="flow-card"><div class="flow-number">02</div><div><h3>Bluetooth trennt sich</h3><p>Die Verbindung deines zugeordneten Fahrzeugs wird zum Auslöser für den möglichen AutoPark-Ablauf.</p></div></article><article class="flow-card"><div class="flow-number">03</div><div><h3>Standort und Bewegung prüfen</h3><p>CarLoMind prüft Voraussetzungen, Standort und Bewegung, bevor ein automatischer Parkplatz gespeichert wird.</p></div></article><article class="flow-card"><div class="flow-number">04</div><div><h3>Später direkt zurückfinden</h3><p>Der Eintrag enthält Kontext wie Zeit, Genauigkeit, Adresse und Fahrzeugbezug – mit optionaler Erfolgsbenachrichtigung.</p></div></article></div>
+      </div>
+      <p class="fineprint">AutoPark ist eine unterstützende Automatik, keine Garantie für eine sekundengenaue Speicherung: Android-Berechtigungen, GPS, Bewegungsprüfung und Hintergrundverhalten können den Ablauf beeinflussen.</p>
+    </div></section>
+
     <section class="section" id="funktionen"><div class="wrap">
-      <div class="section-heading"><span class="eyebrow">Einfach ankommen</span><h2>Alles, was du beim Parken wirklich brauchst.</h2><p>CarLoMind verbindet automatische Erkennung mit klaren, manuellen Möglichkeiten. Die App bleibt verständlich, auch wenn die Technik im Hintergrund viel Arbeit übernimmt.</p></div>
+      <div class="section-heading"><span class="eyebrow">Mehr als AutoPark</span><h2>Alles, was aus einem Parkplatz einen wiederauffindbaren Ort macht.</h2><p>AutoPark ist der Startpunkt. Danach hilft CarLoMind dabei, den Eintrag zu verstehen, zu ergänzen und später ohne Umwege wieder dorthin zurückzukehren.</p></div>
       <div class="feature-grid">
-        <article class="card"><div class="card-icon">⌁</div><h3>Automatisch speichern</h3><p>Nach der Trennung deines zugeordneten Fahrzeug-Bluetooths kann CarLoMind den aktuellen Parkplatz selbstständig speichern – inklusive Zeit, Genauigkeit und Adresse.</p></article>
-        <article class="card"><div class="card-icon">⌖</div><h3>Manuell jederzeit sichern</h3><p>Speichere deinen Standort direkt in der App, über das Widget oder über die Schnelleinstellungen. Du entscheidest, wann und wie du einen Parkplatz anlegst.</p></article>
-        <article class="card"><div class="card-icon">➤</div><h3>Sofort zurück navigieren</h3><p>Öffne die gespeicherte Position und starte die Navigation mit Google Maps. So findest du dein Fahrzeug auch an großen Parkplätzen oder in unbekannter Umgebung wieder.</p></article>
-        <article class="card"><div class="card-icon">⌕</div><h3>Adresse und POI-Erkennung</h3><p>Wenn die Position genau genug ist, kann ein eindeutiger Ort in der Nähe die Darstellung ergänzen – zum Beispiel ein Markt, Fitnessstudio oder eine Werkstatt.</p></article>
-        <article class="card"><div class="card-icon">▦</div><h3>Verlauf mit Kontext</h3><p>Durchsuche deine gespeicherten Parkorte, ergänze Notizen, Etagen, Parknummern und Favoriten und finde vergangene Einträge mit dem passenden Suchradius wieder.</p></article>
-        <article class="card"><div class="card-icon">◷</div><h3>Widget und Quick Settings</h3><p>Das transparente Analoguhren-Widget zeigt den Status dezent an. Ein Schnellzugriff genügt, um einen Parkplatz ohne Umweg zu speichern.</p></article>
+        <article class="card"><div class="card-icon">⌖</div><h3>Manuell sofort speichern</h3><p>Speichere die aktuelle Position jederzeit direkt aus der App – unabhängig von AutoPark.</p></article>
+        <article class="card"><div class="card-icon">➤</div><h3>Karte und Navigation</h3><p>Sieh den gespeicherten Ort auf der Karte, prüfe die Entfernung und öffne Google Maps für den Rückweg.</p></article>
+        <article class="card"><div class="card-icon">◷</div><h3>Parkzeit im Blick</h3><p>Starte für einen gespeicherten Parkplatz einen Timer von 1 bis 1.440 Minuten mit optionaler Erinnerung.</p></article>
+        <article class="card"><div class="card-icon">▦</div><h3>Verlauf mit Kontext</h3><p>Filtere manuelle, automatische und favorisierte Einträge. Ergänze Notiz, Etage, Parknummer, Foto und Status.</p></article>
+        <article class="card"><div class="card-icon">⌕</div><h3>Parkschild als Hinweis</h3><p>Die lokale OCR kann lesbaren Schildtext und mögliche Zeit- oder Gebührenhinweise aufbereiten. Das Original bleibt maßgeblich.</p></article>
+        <article class="card"><div class="card-icon">◉</div><h3>Kompass und Orientierung</h3><p>Bei vorhandener Sensorik und Position zeigt der Kompass Richtung und Entfernung zum gespeicherten Ziel.</p></article>
+        <article class="card wide-card"><div><div class="card-icon">✦</div><h3>Ein Parkplatz, viele Erinnerungsanker.</h3><p>Ob Parkhaus, Innenstadt oder unbekannter Parkplatz: CarLoMind verbindet Ort, Zeit und persönliche Details.</p></div><div class="feature-tags"><span class="tag">Adresse</span><span class="tag">Zeitstempel</span><span class="tag">Distanz</span><span class="tag">Favoriten</span><span class="tag">Parknummer</span><span class="tag">Etage</span><span class="tag">Foto</span><span class="tag">Sprachnotiz</span><span class="tag">POIs</span></div></article>
       </div>
     </div></section>
 
-    <section class="section band" id="so-gehts"><div class="wrap">
-      <div class="section-heading"><span class="eyebrow">Drei Schritte, weniger Suchen</span><h2>CarLoMind passt sich deinem Alltag an.</h2><p>Einmal einrichten, dann entspannt parken. Du behältst jederzeit die Kontrolle über Berechtigungen, Fahrzeuge und automatische Funktionen.</p></div>
-      <div class="steps"><article class="step"><h3>Fahrzeug verbinden</h3><p>Ordne ein gekoppeltes Bluetooth-Fahrzeug zu und entscheide, ob AutoPark nach der Verbindungstrennung aktiv sein soll.</p></article><article class="step"><h3>Parken und losgehen</h3><p>CarLoMind arbeitet im Hintergrund nur für die aktivierten Funktionen. Alternativ speicherst du den Standort manuell per App, Widget oder Quick Settings.</p></article><article class="step"><h3>Standort wiederfinden</h3><p>Öffne deinen Eintrag, sieh Adresse und Kartendetails und navigiere direkt zurück zu deinem gespeicherten Parkplatz.</p></article></div>
+    <section class="section dark" id="kontrolle"><div class="wrap">
+      <div class="section-heading"><span class="eyebrow">Du behältst die Kontrolle</span><h2>Automatisch, aber nicht undurchsichtig.</h2><p>CarLoMind zeigt Voraussetzungen und Ereignisse, damit du verstehst, warum AutoPark gespeichert hat – oder warum ein Versuch nicht fortgesetzt wurde.</p></div>
+      <div class="control-grid"><article class="control-card"><h3>Einstellungen, die zu dir passen</h3><p>Konfiguriere AutoPark und die Begleitfunktionen nach deinem Alltag.</p><ul class="control-list"><li>AutoPark ein-/ausschalten</li><li>Verzögerung von 5, 15 oder 30 Sekunden</li><li>Optionale Erfolgsbenachrichtigung</li><li>Design, Kartenkategorien und Verlaufslimit</li><li>Schnelleinstellungs-Kachel mit eigener Aktion</li></ul></article><article class="control-card"><h3>Diagnose statt Rätselraten</h3><p>Der Diagnosebereich bündelt Setup, Berechtigungen und die letzten AutoPark-Ereignisse.</p><ul class="control-list"><li>Fahrzeugzuordnung und Standortstatus</li><li>Standortdienste und Hintergrundfreigabe</li><li>Letzter Versuch und typische Abbruchgründe</li><li>Lokales Kopieren oder bewusstes Teilen</li><li>Diagnoseverlauf nach Bestätigung löschen</li></ul></article></div>
     </div></section>
 
-    <section class="section"><div class="wrap split"><div><span class="eyebrow">Privatsphäre als Prinzip</span><h2>Deine Parkdaten gehören dir.</h2><p class="quote">„Nützlich im Alltag, zurückhaltend bei deinen Daten.“</p></div><div><ul class="checklist"><li>Parkorte, Fahrzeugprofile, Notizen und Einstellungen werden grundsätzlich lokal auf deinem Android-Gerät gespeichert.</li><li>CarLoMind benötigt kein Benutzerkonto und betreibt keinen eigenen Analyse- oder Tracking-Server.</li><li>Standort- und Bluetooth-Berechtigungen werden nur für die von dir aktivierten Funktionen verwendet.</li><li>Optionale Karten-, Geocoding- und POI-Dienste werden transparent in der Datenschutzerklärung erläutert.</li><li>Diagnose- und Fehlerberichte werden nicht automatisch versendet. Du entscheidest selbst, ob du sie prüfst oder teilst.</li></ul><div class="actions"><a class="button button-primary" style="color:#fff;background:var(--deep)" href="index.html">Datenschutz vollständig lesen</a></div></div></div></section>
+    <section class="section"><div class="wrap privacy"><div><span class="eyebrow">Privatsphäre als Prinzip</span><h2>Technik im Hintergrund. Kontrolle bei dir.</h2><p class="quote">„Nützlich im Alltag, zurückhaltend bei deinen Daten.“</p></div><div><ul class="checklist"><li>Die Datenschutzdokumentation für den aktuellen Android-Quellstand beschreibt keinen CarLoMind-Account und keinen eigenen Analyse- oder Tracking-Server.</li><li>Parkorte, Fahrzeugprofile, Notizen, Fotos, Audioaufnahmen und Diagnosedaten werden lokal beschrieben, sofern du sie nicht selbst teilst.</li><li>Parkdaten sowie verknüpfte Foto- und Audiodateien können über die App gelöscht werden.</li><li>Karten-, Wetter- und Navigationsdienste sind externe Dienste. Ihre technischen Datenverarbeitungen werden in der Datenschutzerklärung erklärt.</li><li>Diagnoseexporte erfolgen erst nach deiner ausdrücklichen Aktion und können sensible Bluetooth-Details enthalten.</li></ul><p class="fineprint">Datenschutzaussagen sind versionsabhängig und sollten vor einer Veröffentlichung mit dem tatsächlich ausgelieferten Build abgeglichen werden.</p><div class="actions"><a class="button button-primary" style="color:#fff;background:#073f4c" href="index.html">Datenschutz vollständig lesen</a></div></div></div></section>
 
-    <section class="cta"><div class="wrap"><span class="eyebrow">Weniger suchen. Mehr ankommen.</span><h2>Parken mit einem guten Gefühl.</h2><p>CarLoMind bringt deinen Parkplatz dorthin zurück, wo du ihn brauchst: in eine klare Übersicht, auf die Karte und direkt in die Navigation.</p><a class="button button-primary" href="#start">Nach oben</a></div></section>
+    <section class="cta"><div class="wrap"><span class="eyebrow">Weniger suchen. Mehr ankommen.</span><h2>Der Parkplatz ist nicht mehr der Teil des Tages, den du vergessen musst.</h2><p>CarLoMind verbindet AutoPark mit einer klaren manuellen Kontrolle, damit dein nächster Weg zurück genauso entspannt beginnt wie dein Aussteigen.</p><a class="button button-primary" href="#start">AutoPark von oben ansehen</a></div></section>
   </main>
-  <footer><div class="wrap footer-inner"><span>© 2026 CarLoMind · P34nuts</span><span><a href="index.html">Datenschutzerklärung</a> · <a href="mailto:p34nuts@mail.de">Kontakt</a></span></div></footer>
+  <footer><div class="wrap footer-inner"><span>© 2026 CarLoMind · P34nuts</span><span><a href="index.html">Datenschutzerklärung</a> · <a href="mailto:p34nuts@mail.de">Kontakt</a> · <a href="#start">Nach oben</a></span></div></footer>
 </body>
 </html>
