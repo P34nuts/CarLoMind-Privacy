@@ -109,10 +109,18 @@
     .cta h2 { color:#062b3c; }
     .cta p { max-width:690px; margin:0 auto; color:#365d69; font-size:1.12rem; }
     .cta .button-primary { margin-top:28px; color:#eaffff; background:#073f4c; }
+    .projects { padding:62px 0 34px; background:#061522; }
+    .projects-card { display:flex; align-items:center; justify-content:space-between; gap:28px; padding:26px 28px; border:1px solid rgba(140,236,255,.17); border-radius:22px; background:linear-gradient(110deg,rgba(13,53,72,.72),rgba(8,34,51,.82)); }
+    .projects-card .eyebrow { margin-bottom:8px; color:var(--teal); }
+    .projects-card h3 { margin-bottom:6px; color:#fff; font-size:1.35rem; }
+    .projects-card p { max-width:650px; margin:0; color:#a8c8d3; }
+    .projects-link { flex:0 0 auto; color:#062b3c; background:var(--cyan); }
+    .watermark { display:block; margin-top:30px; color:rgba(140,236,255,.18); font-size:clamp(3.3rem,13vw,9rem); font-weight:900; letter-spacing:-.08em; line-height:.8; text-align:center; text-decoration:none; transition:color .2s ease; }
+    .watermark:hover { color:rgba(140,236,255,.45); }
     footer { padding:30px 0 42px; color:#86a6b2; background:#061522; font-size:.9rem; }
     .footer-inner { display:flex; justify-content:space-between; gap:20px; }
     footer a { color:#b9e9e5; text-decoration:none; }
-    @media (max-width:900px) { .hero-grid,.autopark-story,.privacy { grid-template-columns:1fr; gap:44px; } .hero-grid { padding-top:48px; } .hero-media { justify-self:center; width:min(100%,360px); } .phone-badge { right:-16px; } .feature-grid { grid-template-columns:repeat(2,1fr); } .platform-note { grid-template-columns:1fr; gap:8px; } }
+    @media (max-width:900px) { .hero-grid,.autopark-story,.privacy { grid-template-columns:1fr; gap:44px; } .hero-grid { padding-top:48px; } .hero-media { justify-self:center; width:min(100%,360px); } .phone-badge { right:-16px; } .feature-grid { grid-template-columns:repeat(2,1fr); } .platform-note { grid-template-columns:1fr; gap:8px; } .projects-card { align-items:flex-start; flex-direction:column; } }
     @media (max-width:640px) { .wrap { width:min(100% - 28px,1160px); } .nav-links a:not(.nav-button) { display:none; } .nav-button { padding:8px 12px; } .hero-grid { padding-bottom:64px; } .section { padding:74px 0; } .proof-grid { grid-template-columns:repeat(2,1fr); } .proof:nth-child(2) { border-right:0; } .proof:nth-child(-n+2) { border-bottom:1px solid rgba(255,255,255,.1); } .feature-grid,.control-grid,.calendar-grid { grid-template-columns:1fr; } .wide-card,.calendar-grid .wide-card { grid-column:auto; display:block; } h1 { font-size:clamp(3rem,15vw,5rem); } .footer-inner { flex-direction:column; } }
   </style>
 </head>
@@ -177,6 +185,7 @@
 
     <section class="cta"><div class="wrap"><span class="eyebrow">Weniger suchen. Mehr ankommen.</span><h2>Der Parkplatz ist nicht mehr der Teil des Tages, den du vergessen musst.</h2><p>CarLoMind verbindet AutoPark mit einer klaren manuellen Kontrolle, damit dein nächster Weg zurück genauso entspannt beginnt wie dein Aussteigen.</p><a class="button button-primary" href="#start">AutoPark von oben ansehen</a></div></section>
   </main>
-  <footer><div class="wrap footer-inner"><span>© 2026 CarLoMind · P34nuts</span><span><a href="index.html">Datenschutzerklärung</a> · <a href="mailto:p34nuts@mail.de">Kontakt</a> · <a href="#start">Nach oben</a></span></div></footer>
+  <section class="projects" aria-label="Weitere P34nuts-Projekte"><div class="wrap"><div class="projects-card"><div><span class="eyebrow">Weitere P34nuts-Projekte</span><h3>Der größere P34nuts-Kosmos</h3><p>CarLoMind ist ein Projekt von P34nuts. Entdecke weitere Musik-, Archiv- und Webprojekte auf der zentralen P34nuts-Seite.</p></div><a class="button projects-link" href="https://p34nuts.github.io/" target="_blank" rel="noopener noreferrer">p34nuts.github.io öffnen</a></div><a class="watermark" href="https://p34nuts.github.io/" target="_blank" rel="noopener noreferrer" aria-label="P34nuts – weitere Projekte">P34nuts</a></div></section>
+  <footer><div class="wrap footer-inner"><span>© 2026 CarLoMind · <a href="https://p34nuts.github.io/" target="_blank" rel="noopener noreferrer">P34nuts</a></span><span><a href="index.html">Datenschutzerklärung</a> · <a href="mailto:p34nuts@mail.de">Kontakt</a> · <a href="#start">Nach oben</a></span></div></footer>
 </body>
 </html>
